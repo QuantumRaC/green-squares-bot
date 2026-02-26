@@ -132,7 +132,8 @@ def perform_commits():
         subprocess.run(["git", "add", filename])
         subprocess.run(["git", "commit", "-m", message])
         log_entries.append(f"[{timestamp}] - {message}")
-
+    # After the loop finishes all commits for the slot
+    subprocess.run(["git", "push"])
     # Update tracking
     data[date_key] = done + slot_commit
     data["week_data"] = week_data
